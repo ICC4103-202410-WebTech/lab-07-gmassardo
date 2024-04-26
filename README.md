@@ -48,17 +48,38 @@ Make sure to create the relationships between the tables, so the database is pop
 1. Find all the posts that belong to a user with the name "John Doe".
 
 ```ruby
-### Code here
+
+user = User.find_by(name: "John Doe")
+
+
+if user
+  john_doe_posts = user.posts
+  
+else
+  puts "User 'John Doe' not found."
+end
 ```
 
 2. Find all the tags that belong to a post with the title "Post 1".
 
 ```ruby
-### Code here
+post = Post.find_by(title: "Post 1")
+
+
+if post
+  post_tags = post.tags
+ 
+else
+  
+  puts "Post 'Post 1' not found."
+end
 ```
 
 3. Find all users that have a post with the tag "Tag 1".
 
 ```ruby
-### Code here
+
+users_with_tag_1 = User.joins(posts: { tags: :posts_tags }).where(tags: { name: "Tag 1" })
+
+
 ```
